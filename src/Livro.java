@@ -1,22 +1,22 @@
 public class Livro {
     private String titulo;
-    private String autor;
+    private String author;
 
-    public Livro(String titulo, String autor) {
+    public Livro(String titulo, String author) {
         this.titulo = titulo;
-        this.autor = autor;
+        this.author = author;
     }
 
     public String getTitulo() {
         return titulo;
     }
 
-    public String getAutor() {
-        return autor;
+    public String getauthor() {
+        return author;
     }
 
     @Override
     public String toString() {
-        return "Livro: " + titulo + " | Autor: " + autor;
+        return "Livro: " + titulo + " | autor: " + author;
     }
 }

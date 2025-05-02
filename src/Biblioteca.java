@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Biblioteca {
     private List<Livro> livros;
@@ -13,8 +14,15 @@ public class Biblioteca {
     }
 
     public void listarLivros() {
-        for (Livro livro : livros) {
-            System.out.println(livro);
-        }
+            for (Livro livro : livros) {
+                System.out.println(livro);
+            }
+    }
+
+    public List<Livro> buscarPorAutor(String author) {  
+        return livros.stream()
+            .filter(livro -> livro.getauthor().equalsIgnoreCase(author))
+            .collect(Collectors.toList());
+        
     }
 }
