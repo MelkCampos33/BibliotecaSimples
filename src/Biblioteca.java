@@ -5,31 +5,37 @@ import java.util.stream.Collectors;
 public class Biblioteca {
     private List<Livro> livros = new ArrayList<>();
 
-    public Biblioteca() {
-        this.livros = new ArrayList<>();
+    public void adicionarLivro(String titulo, String autor, String isbn) {
+        livros.add(new Livro(titulo, autor, isbn));
     }
 
-    public void adicionarLivro(String isbn, String titulo, String autor) {
-        livros.add(new Livro(isbn, titulo, autor));
+    public List<Livro> listarLivros() {
+        return new ArrayList<>(livros);
     }
 
-    public void listarLivros() {
-        for (Livro livro : livros) {
-            System.out.println(livro);
-        }
-    }
-
-    public List<Livro> buscarPorAutor(String author) {
+    /**
+     * Buscar livros por autor, ignorando maiúsculas/minúsculas.
+     *
+     * @param autor Nome do autor a ser buscado.
+     * @return Lista de livros do autor especificado.
+     */
+    public List<Livro> buscarPorAutor(String autor) {
         return livros.stream()
-                .filter(livro -> livro.getAutor().equalsIgnoreCase(author))
-                .toList();
+                .filter(livro -> livro.getAutor().equalsIgnoreCase(autor.trim()))
+                .collect(Collectors.toList());
     }
 
+    /**
+     * Buscar um livro pelo ISBN.
+     *
+     * @param isbn ISBN do livro.
+     * @return Livro correspondente ou null se não encontrado.
+     */
+    
     public Livro buscarPorIsbn(String isbn) {
-
         return livros.stream()
-            .filter(livro -> livro.getIsbn().equalsIgnoreCase(isbn))
-            .findFirst()
-            .orElse(null);
+                .filter(livro -> livro.getIsbn().equals(isbn))
+                .findFirst()
+                .orElse(null);
     }
 }
